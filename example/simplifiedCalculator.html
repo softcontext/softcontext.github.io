@@ -1,0 +1,100 @@
+<!-- 구구단 출력 -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simplified Calculator</title>
+    <link rel="stylesheet" href="bootstrap.css">
+
+    <style media="screen">
+      thead.head {
+        font-weight: bold;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function printcalc() {
+        // inputBox에 입력된 값을 for문에 사용할 수 있도록 변수에 담는다.
+        var fromNum = document.getElementById("fromNum");
+        var f = fromNum.value;
+
+        var toNum = document.getElementById("toNum");
+        var t = toNum.value;
+
+        // tbody 채우기 관련 부분 시작 ------------------------------------------
+        // for문을 입력된 횟수 만큼만 돌릴 수 있도록 시작값과 끝 값을 변경한다.
+        var tds;
+        var trs = [];
+
+        for (var i = 1; i <= 20; i++) { // row
+          tds = [];
+          for (var j = f; j <= t; j++) { // column
+            tds.push("<td>" + j + "*" + i + "=" + (i * j) + "</td>");
+          }
+          trs.push("<tr>"+tds.join("")+"</tr>");
+        }
+
+        var tbody = document.getElementById("target");
+        tbody.innerHTML = trs.join("");
+        // tbody 채우기 관련 부분 마침 ------------------------------------------
+
+        // thead 채우기 관련 부분 시작 ------------------------------------------
+        // thead 는 tbody와는 달린 한 줄이면 되므로, 이중 반복문이 없어도 된다.
+        var headTds = [];
+
+        for (var i = f; i <= t; i++) {
+          headTds.push("<td>" + i + "</td>");
+        }
+
+        var thead = document.getElementById("targetHead");
+        thead.innerHTML = headTds.join("");
+
+        // thead 채우기 관련 부분 마침 ------------------------------------------
+      }
+    </script>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <h3>Gugudan</h3>
+
+      <form class="">
+        <label for="">From</label>
+        <input type="number" min="1" max="20" value="" id="fromNum">
+
+        &nbsp;~&nbsp;
+
+        <label for="">To</label>
+        <input type="number" min="1" max="20" value="" id="toNum">
+
+        &nbsp;
+
+        <button type="button" onclick = printcalc()>Show</button>
+      </form>
+
+      <table class="table table-striped">
+        <thead class="head">
+          <tr id="targetHead">
+            <!-- <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th> -->
+
+            <!-- tr은 한번만 나오면 된다는 것.
+            for문 안의 식은 <th> + i + </th> 의 모양이 될 것이라는 것.
+            id를 thead가 아니라 그 아래의 tr에 달면 더 편할 것 같다는 것. -->
+          </tr>
+        </thead>
+        <tbody id="target">
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
